@@ -10,7 +10,7 @@ endPoint = "https://pitcsprd.csps.pitt.edu/psc/pitcsprd/EMPLOYEE/SA/s/WEBLIB_HCX
 #start at page 1
 page = 1
 
-with open('/dump/dump.txt', 'x') as file:
+with open('dump.txt', 'x') as file:
         while True:
                 print("Page #:",page)
 
