@@ -36,7 +36,8 @@ async function proxyGetRMP(name){
         return;
     }
     //to-do add subject to pick the correct professor adam lee has two
-    const re = await fetch("https://corsproxy.io/?https://www.ratemyprofessors.com/graphql", {
+    const re = await fetch("https://www.ratemyprofessors.com/graphql", {
+    //const re = await fetch("https://corsproxy.io/?https://www.ratemyprofessors.com/graphql", {
                            "headers": {
                            "accept": "*/*", 
                            "accept-language": "en-US,en;q=0.9",
@@ -112,7 +113,7 @@ const observer = new MutationObserver(function (mutations) {
     //old method
     //construct dict
     /*
-    for await (const prof of profs){
+    for (const prof of profs){
         proxyGetRMP(prof).then(rmpData => {
 
             if(rmpData.data.search.teachers.edges.length > 0){
@@ -130,15 +131,33 @@ const observer = new MutationObserver(function (mutations) {
 
     //edit names
 
-    /*for (const entry of grid){
+    for (const entry of grid){
         changeProfName(entry, ratingDict[gridToProf(entry)]);
     }*/
 
     //promise all method
+    promises = []
+    for (const prof of profs){
+        promises.push(proxyGetRMP(prof))
+    }
+    
+    Promise.all(promises).then(rData =>{
+        for(var i = 0; i < promises.length; i++){
+            if(rData[i].data.search.teachers.edges.length > 0){
+                profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
+                ratingDict[profs[i]] = profRating;
+            }
+            else{
+                ratingDict[profs[i]] = 0;
+            }
+        }
+        console.log(rData);
+        for (const entry of grid){
+            changeProfName(entry, ratingDict[gridToProf(entry)]);
+        }
+    });
+    
 
-    //construct promises
-
-    //promise all
     
 
     console.log("mutObs Disconnected");
