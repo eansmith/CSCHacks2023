@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(
     function(name, sender, onSuccess) {
-            //to-do add subject to pick the correct professor adam lee has two
+        //to-do add subject to pick the correct professor adam lee has two
         fetch("https://www.ratemyprofessors.com/graphql", {
                                "headers": {
                                "accept": "*/*", 
@@ -16,6 +16,6 @@ chrome.runtime.onMessage.addListener(
                                "mode": "cors"
                                }).then(re => re.json()).then(data => onSuccess(data))
                               
-        return true;  // Will respond asynchronously.
+        return true;
     }
 );
