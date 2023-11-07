@@ -1,7 +1,11 @@
 function gridToProf(element){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
     profElement = profElement.childNodes[0].childNodes[0];
+    if(profElement.textContent.includes("⭐")){
+        return "";
+    }
     profName = profElement.textContent.replace(/[^a-z0-9\s]/gi, '');
+    
     return profName;
 }
 
@@ -42,8 +46,6 @@ function editGridElement(element){
 const observer = new MutationObserver(function (mutations) {
     let flag = false;
     for(const mut of mutations){
-        console.log(mut.target.className);
-        console.log(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1");
         if(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1"){
             flag = true;
             break;
@@ -52,14 +54,11 @@ const observer = new MutationObserver(function (mutations) {
     if(!flag){
         return;
     }
-    console.log("done");
     
     const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
     if(elements.length == 0){
         return;
     }
-
-    const grid = [];
 
     for (var i = 0; i < elements.length; i++) {
         if(elements.item(i).childNodes.length < 2){
@@ -70,9 +69,6 @@ const observer = new MutationObserver(function (mutations) {
         }
         editGridElement(elements.item(i));
     }
-    
-    //console.log("mutObs Disconnected");
-    //observer.disconnect();
 });
 observer.observe(document, {
     childList: true,
