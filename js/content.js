@@ -1,9 +1,17 @@
 function gridToProf(element){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
-
     profElement = profElement.childNodes[0].childNodes[0];
     profName = profElement.textContent.replace(/[^a-z0-9\s]/gi, '');
-    console.log(profName);
+    return profName;
+}
+
+function changeProfName(element){
+    profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
+    profTexts = profElement.childNodes[0].childNodes;
+    
+    for(var i = 0; i < profTexts.length; i++){
+        profTexts[i].textContent = "4.0 " +  profTexts[i].textContent;
+    }
 }
 //https://stackoverflow.com/questions/60337528/chrome-extension-cross-origin-requests-in-background-script-blocked
 //https://stackoverflow.com/questions/12357485/cors-chrome-extension-with-manifest-version-2
@@ -25,15 +33,37 @@ async function proxyGetRMP(name){
                            "method": "POST",
                            "mode": "cors"
                            });
-
+    
     const data = await re.json();
-    console.log(data);
+    return data;
 }
-proxyGetRMP("adam lee");
+//console.log(proxyGetRMP("adam lee"));
+
+function editGridElement(element){
+    profName = gridToProf(element);
+    if(profName === "To be Announced" || profName === ""){
+        return;
+    }
+
+    /*proxyGetRMP(profName).then(rmpData => {
+
+        console.log(rmpData);
+        profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
+
+        console.log(profRating);
+    });*/
+
+    //changeProfName(element);
+
+    
+
+}
 
 const observer = new MutationObserver(function (mutations) {
     const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
-
+    if(elements.length == 0){
+        return;
+    }
     for (var i = 0; i < elements.length; i++) {
         if(elements.item(i).childNodes.length < 2){
             continue;
@@ -42,8 +72,10 @@ const observer = new MutationObserver(function (mutations) {
             continue;
         }
         //console.log(elements.item(i));
-        gridToProf(elements.item(i));
+        //gridToProf(elements.item(i));
+        editGridElement(elements.item(i));
     }
+    observer.disconnect();
 });
 
 
