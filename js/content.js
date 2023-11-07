@@ -40,6 +40,19 @@ function editGridElement(element){
 }
 
 const observer = new MutationObserver(function (mutations) {
+    let flag = false;
+    for(const mut of mutations){
+        console.log(mut.target.className);
+        console.log(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1");
+        if(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1"){
+            flag = true;
+            break;
+        }
+    }
+    if(!flag){
+        return;
+    }
+    console.log("done");
     
     const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
     if(elements.length == 0){
@@ -58,8 +71,8 @@ const observer = new MutationObserver(function (mutations) {
         editGridElement(elements.item(i));
     }
     
-    console.log("mutObs Disconnected");
-    observer.disconnect();
+    //console.log("mutObs Disconnected");
+    //observer.disconnect();
 });
 observer.observe(document, {
     childList: true,
