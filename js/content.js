@@ -32,7 +32,6 @@ function editGridElement(element){
             changeProfName(element,profRating);
         }
         else{
-            ratingDict[profName] = 0;
             changeProfName(element,0);
 
         }});
