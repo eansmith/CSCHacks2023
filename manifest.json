@@ -1,0 +1,12 @@
+{
+  "name": "High Point Rate My Professor",
+  "description": "Rate My Professor integration for Pitt High Point",
+  "version": "1.0",
+  "manifest_version": 3,
+  
+  "content_scripts": [{
+    
+    "js": ["content.js"],
+    "matches": ["https://www.pinkbike.com/*"]
+  }]
+}
