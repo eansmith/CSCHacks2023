@@ -1,3 +1,5 @@
+ratingDict = {};
+
 function gridToProf(element){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
     profElement = profElement.childNodes[0].childNodes[0];
@@ -5,12 +7,24 @@ function gridToProf(element){
     return profName;
 }
 
-function changeProfName(element){
+function addZeroes(num) {
+
+    const dec = num.split('.')[1]
+    const len = dec && dec.length > 1 ? dec.length : 1
+    return Number(num).toFixed(len)
+}
+
+function changeProfName(element,rating){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
     profTexts = profElement.childNodes[0].childNodes;
     
     for(var i = 0; i < profTexts.length; i++){
-        profTexts[i].textContent = "4.0 " +  profTexts[i].textContent;
+        if(rating == 0){
+            profTexts[i].textContent = "⭐ N/A " +  profTexts[i].textContent;
+        }
+        else{
+            profTexts[i].textContent = "⭐ "+ rating.toFixed(1) +  " " +  profTexts[i].textContent;
+        }
     }
 }
 //https://stackoverflow.com/questions/60337528/chrome-extension-cross-origin-requests-in-background-script-blocked
@@ -18,6 +32,9 @@ function changeProfName(element){
 
 //corproxy.io could be unsafe and should not be used
 async function proxyGetRMP(name){
+    if(name === "To be Announced" || name === ""){
+        return;
+    }
     //to-do add subject to pick the correct professor adam lee has two
     const re = await fetch("https://corsproxy.io/?https://www.ratemyprofessors.com/graphql", {
                            "headers": {
@@ -41,29 +58,38 @@ async function proxyGetRMP(name){
 
 function editGridElement(element){
     profName = gridToProf(element);
-    if(profName === "To be Announced" || profName === ""){
+    console.log(profName);
+    if(profName  === "To be Announced" || profName  === ""){
         return;
     }
+    else{
+        proxyGetRMP(profName).then(rmpData => {
 
-    /*proxyGetRMP(profName).then(rmpData => {
+            if(rmpData.data.search.teachers.edges.length > 0){
+                profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
+                changeProfName(element,profRating);
+            }
+            else{
+                ratingDict[profName] = 0;
+                changeProfName(element,0);
 
-        console.log(rmpData);
-        profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
-
-        console.log(profRating);
-    });*/
-
-    //changeProfName(element);
-
-    
+            }
+            console.log(ratingDict);
+        });
+    }
 
 }
 
+
 const observer = new MutationObserver(function (mutations) {
+    
     const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
     if(elements.length == 0){
         return;
     }
+
+    const grid = [];
+    //construct grid list 
     for (var i = 0; i < elements.length; i++) {
         if(elements.item(i).childNodes.length < 2){
             continue;
@@ -73,12 +99,53 @@ const observer = new MutationObserver(function (mutations) {
         }
         //console.log(elements.item(i));
         //gridToProf(elements.item(i));
-        editGridElement(elements.item(i));
+        //editGridElement(elements.item(i));
+        grid.push(elements.item(i));
     }
+    //construct set
+    const profs = new Set();
+
+    for (var i = 0; i < grid.length; i++){
+        profs.add(gridToProf(grid[i]));
+    }
+
+    //old method
+    //construct dict
+    /*
+    for await (const prof of profs){
+        proxyGetRMP(prof).then(rmpData => {
+
+            if(rmpData.data.search.teachers.edges.length > 0){
+                profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
+                ratingDict[prof] = profRating;
+            }
+            else{
+                ratingDict[prof] = 0;
+            }
+        });
+    }
+    
+    console.log(profs);
+    console.log(ratingDict);
+
+    //edit names
+
+    /*for (const entry of grid){
+        changeProfName(entry, ratingDict[gridToProf(entry)]);
+    }*/
+
+    //promise all method
+
+    //construct promises
+
+    //promise all
+    
+
+    console.log("mutObs Disconnected");
     observer.disconnect();
 });
 
-
+// send list of unique prof Return dict with rating
 observer.observe(document, {
     childList: true,
     subtree:   true
