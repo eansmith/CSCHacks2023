@@ -9,7 +9,7 @@
     "matches": ["https://pitcsprd.csps.pitt.edu/*"]
   }],
   "background": {
-    "service_worker": "bg_page.js",
+    "service_worker": "js/apiCaller.js",
     "type": "module"
   }
 }
