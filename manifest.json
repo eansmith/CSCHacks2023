@@ -6,7 +6,7 @@
   
   "content_scripts": [{
     
-    "js": ["content.js"],
+    "js": ["js/content.js"],
     "matches": ["https://pitcsprd.csps.pitt.edu/psp/pitcsprd/EMPLOYEE/SA/s/WEBLIB_HCX_CM.H_CLASS_SEARCH.FieldFormula.IScript_Main"]
   }]
 }
