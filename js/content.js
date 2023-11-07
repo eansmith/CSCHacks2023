@@ -109,7 +109,9 @@ const observer = new MutationObserver(function (mutations) {
     for (var i = 0; i < grid.length; i++){
         profs.add(gridToProf(grid[i]));
     }
-
+    for (const prof of profs){
+        chrome.runtime.sendMessage("william garrsion", data => console.log(data)); 
+    }
     //old method
     //construct dict
     /*
@@ -165,10 +167,9 @@ const observer = new MutationObserver(function (mutations) {
     console.log("mutObs Disconnected");
     observer.disconnect();
 });
-chrome.runtime.sendMessage( 
-    "",//goes to bg_page.js
-      data => console.log(data) //your callback
-    ); 
+
+//chrome.runtime.sendMessage("william garrsion", data => console.log(data)); 
+
 // send list of unique prof Return dict with rating
 observer.observe(document, {
     childList: true,
