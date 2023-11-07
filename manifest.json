@@ -3,7 +3,7 @@
   "description": "Rate My Professor integration for Pitt High Point",
   "version": "1.0",
   "manifest_version": 3,
-  
+  "host_permissions": ["https://www.ratemyprofessors.com/*"],
   "content_scripts": [{
     
     "js": ["js/content.js"],
