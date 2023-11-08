@@ -12,5 +12,11 @@
   "background": {
     "service_worker": "js/apiCaller.js",
     "type": "module"
+  },
+  "browser_action": {
+    "default_icon": {
+        "16": "lead_icon_16x16"
+    },
+    "default_popup": "/js/leader_popup.html"
   }
 }
