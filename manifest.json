@@ -15,10 +15,10 @@
   },
   "action": {
     "default_icon": {
-        "16": "images/lead_icon_16x16",
-        "32": "images/lead_icon_32x32",
-        "48": "images/lead_icon_48x48",
-        "128": "images/lead_icon_128x128"
+        "16": "images/lead_icon_16x16.png",
+        "32": "images/lead_icon_32x32.png",
+        "48": "images/lead_icon_48x48.png",
+        "128": "images/lead_icon_128x128.png"
     },
     "default_title": "View Leaderboard",
     "default_popup": "/js/leader_popup.html"
