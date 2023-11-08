@@ -115,7 +115,8 @@ function createRecButton(){
     label = document.createElement("label");
     label.for = "hpExtRec"
     label.innerHTML = "Hide Recitations and Labs";
-
+    label.style.fontFamily = "IBM Plex Sans";
+    label.style.fontSize = "15px";
 
     div.appendChild(button);
     div.appendChild(label);
