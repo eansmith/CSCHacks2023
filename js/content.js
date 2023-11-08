@@ -1,4 +1,4 @@
-let createdRecButton = false;
+let hideRec = false;
 
 function gridToProf(element){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
@@ -30,8 +30,19 @@ function changeProfName(element,rating,id){
     }
 }
 
+function toggleHideRec(){
+    hideRec = !hideRec;
+}
+
 function editGridElement(element){
     profName = gridToProf(element);
+    if(hideRec){
+        secName = element.getElementsByClassName("mr-1 css-1o4wo1x").item(0).textContent;
+        if(secName.includes('REC') || secName.includes('LAB')){
+            element.parentElement.parentElement.parentElement.style.display = 'none';
+        }
+        
+    }
     if(profName  === "To be Announced" || profName  === ""){
         return;
     }
@@ -59,21 +70,22 @@ function createRecButton(){
     button = document.createElement("input");
     button.type = "checkbox";
     button.id = "hpExtRec";
+    button.addEventListener('click', function() {
+        toggleHideRec();
+    });
+    //button.setAttribute("onclick", "toggleHideRec()");
 
     label = document.createElement("label");
     label.for = "hpExtRec"
-    label.innerHTML = "Hide Recitations";
+    label.innerHTML = "Hide Recitations and Labs";
 
 
     div.appendChild(button);
     div.appendChild(label);
 }
+createRecButton();
 
 const observer = new MutationObserver(function (mutations) {
-    if(!createdRecButton){
-        createRecButton();
-        createdRecButton = true;
-    }
     let flag = false;
     for(const mut of mutations){
         if(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1"){
@@ -98,6 +110,7 @@ const observer = new MutationObserver(function (mutations) {
             continue;
         }
         editGridElement(elements.item(i));
+        
     }
 });
 observer.observe(document, {
