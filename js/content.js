@@ -1,3 +1,5 @@
+let createdRecButton = false;
+
 function gridToProf(element){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
     profElement = profElement.childNodes[0].childNodes[0];
@@ -51,7 +53,27 @@ function editGridElement(element){
 
 }
 
+function createRecButton(){
+    div = document.getElementsByClassName("MuiGrid-root d-flex align-items-end pb-sm-2 h-100 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12")[0];
+    
+    button = document.createElement("input");
+    button.type = "checkbox";
+    button.id = "hpExtRec";
+
+    label = document.createElement("label");
+    label.for = "hpExtRec"
+    label.innerHTML = "Hide Recitations";
+
+
+    div.appendChild(button);
+    div.appendChild(label);
+}
+
 const observer = new MutationObserver(function (mutations) {
+    if(!createdRecButton){
+        createRecButton();
+        createdRecButton = true;
+    }
     let flag = false;
     for(const mut of mutations){
         if(mut.target.className === "MuiGrid-root px-0 MuiGrid-container MuiGrid-spacing-xs-1"){
