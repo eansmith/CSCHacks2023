@@ -6,7 +6,7 @@
   "host_permissions": ["https://www.ratemyprofessors.com/graphql"],
   "content_scripts": [{
     "js": ["js/content.js"],
-    "matches": ["https://pitcsprd.csps.pitt.edu/*"],
+    "matches": ["https://pitcsprd.csps.pitt.edu/psc/*"],
     "all_frames": true
   }],
   "background": {

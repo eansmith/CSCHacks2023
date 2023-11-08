@@ -32,6 +32,43 @@ function changeProfName(element,rating,id){
 
 function toggleHideRec(){
     hideRec = !hideRec;
+    if(!hideRec){
+        const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
+        if(elements.length == 0){
+            return;
+        }
+
+        for (var i = 0; i < elements.length; i++) {
+            if(elements.item(i).childNodes.length < 2){
+                continue;
+            }
+            if(elements.item(i).childNodes[1].className === "MuiGrid-root MuiGrid-item"){
+                continue;
+            }
+            if(elements.item(i).parentElement.parentElement.parentElement.style.display == 'none'){
+                elements.item(i).parentElement.parentElement.parentElement.style.display = 'block';
+            }
+        }
+    }
+    if(hideRec){
+        const elements = document.getElementsByClassName("MuiGrid-root MuiGrid-container MuiGrid-wrap-xs-nowrap MuiGrid-align-items-xs-center");
+        if(elements.length == 0){
+            return;
+        }
+
+        for (var i = 0; i < elements.length; i++) {
+            if(elements.item(i).childNodes.length < 2){
+                continue;
+            }
+            if(elements.item(i).childNodes[1].className === "MuiGrid-root MuiGrid-item"){
+                continue;
+            }
+            secName = elements.item(i).getElementsByClassName("mr-1 css-1o4wo1x").item(0).textContent;
+            if(secName.includes('REC') || secName.includes('LAB')){
+                elements.item(i).parentElement.parentElement.parentElement.style.display = 'none';
+            }
+        }
+    }
 }
 
 function editGridElement(element){
