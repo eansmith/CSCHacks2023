@@ -9,8 +9,12 @@ function gridToProf(element){
     return profName;
 }
 
-function changeProfName(element,rating){
+function changeProfName(element,rating,id){
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
+
+    if(id != 0){
+        profElement.setAttribute("onclick", "window.open('https://www.ratemyprofessors.com/professor/" + id +"', '_blank');");
+    }
     profTexts = profElement.childNodes[0].childNodes;
     
     for(var i = 0; i < profTexts.length; i++){
@@ -19,6 +23,7 @@ function changeProfName(element,rating){
         }
         else{
             profTexts[i].textContent = "⭐ "+ rating.toFixed(1) +  " " +  profTexts[i].textContent;
+            
         }
     }
 }
@@ -29,14 +34,17 @@ function editGridElement(element){
         return;
     }
     else{
+
         chrome.runtime.sendMessage(profName, rmpData => {
 
-        if(rmpData.data.search.teachers.edges.length > 0){
+        if(rmpData.data?.search.teachers.edges.length > 0){
+            
             profRating = rmpData.data.search.teachers.edges[0].node.avgRating;
-            changeProfName(element,profRating);
+            legacyId = rmpData.data.search.teachers.edges[0].node.legacyId;
+            changeProfName(element,profRating,legacyId);
         }
         else{
-            changeProfName(element,0);
+            changeProfName(element,0,0);
 
         }});
     }
