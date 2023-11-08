@@ -102,7 +102,7 @@ function editGridElement(element){
 }
 
 function createRecButton(){
-    div = document.getElementsByClassName("MuiGrid-root d-flex align-items-end pb-sm-2 h-100 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12")[0];
+    div = document.getElementsByClassName("MuiGrid-root d-flex align-items-end pb-sm-2 h-100 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12")[0].childNodes[0];
     
     button = document.createElement("input");
     button.type = "checkbox";
