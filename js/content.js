@@ -107,6 +107,9 @@ function createRecButton(){
     button = document.createElement("input");
     button.type = "checkbox";
     button.id = "hpExtRec";
+    //button.style.borderRadius = "40%";
+    button.style.transform = "scale(1.5)"; 
+    button.style.margin = "15px 15px 15px 15px";
     button.addEventListener('click', function() {
         toggleHideRec();
     });
