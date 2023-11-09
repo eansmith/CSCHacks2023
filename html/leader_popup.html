@@ -19,23 +19,16 @@ body {
 <div id="output"></div>
 <!--Access Dictionary in content.js-->
 <script type="text/javascript" src="/js/content.js">
-  //function to print the dictionary content to HTML
-  function printDictionaryToHTML() {
-      var outputDiv = document.getElementById('output');
-
-      for (var key in leadDictionary) {
-          if (leadDictionary.hasOwnProperty(key)) {
-              var pElement = document.createElement('p');
-              pElement.textContent = key + ': ' + leadDictionary[key];
-              outputDiv.appendChild(pElement);
-          }
+  //print the dictionary content to HTML
+  var outputDiv = document.getElementById('output');
+      
+  for (var key in leadDictionary) {
+      if (leadDictionary.hasOwnProperty(key)) {
+          var pElement = document.createElement('p');
+          pElement.textContent = key + ': ' + leadDictionary[key];
+          outputDiv.appendChild(pElement);
       }
   }
-
-  //call the function when the window has loaded
-  window.onload = function () {
-      printDictionaryToHTML();
-  };
 </script>
 
 <input type="submit" value="Clear">
