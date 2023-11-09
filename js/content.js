@@ -1,6 +1,9 @@
 //hidden rec var determines if recs and labs are hidden
 let hideRec = false;
 
+//dictionary of professors (key) and their respective ratings (value)
+let leadDictionary = {};
+
 //takes search grid element as input and returns the prof name
 function gridToProf(element){
 
@@ -211,6 +214,8 @@ const observer = new MutationObserver(function (mutations) {
         //sends revelant items to be edited
         editGridElement(elements.item(i));
         
+        //adds professor and their rating to dictionary
+        leadDictionary[profName] = profRating;
     }
 });
 
