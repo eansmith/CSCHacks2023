@@ -21,12 +21,12 @@ body {
 <script type="text/javascript" src="/js/content.js">
   //function to print the dictionary content to HTML
   function printDictionaryToHTML() {
-      var outputDiv = document.getElementById('output'); // Assuming you have an element with the ID 'output' in your HTML file
+      var outputDiv = document.getElementById('output');
 
-      for (var key in myDictionary) {
-          if (myDictionary.hasOwnProperty(key)) {
+      for (var key in leadDictionary) {
+          if (leadDictionary.hasOwnProperty(key)) {
               var pElement = document.createElement('p');
-              pElement.textContent = key + ': ' + myDictionary[key];
+              pElement.textContent = key + ': ' + leadDictionary[key];
               outputDiv.appendChild(pElement);
           }
       }
