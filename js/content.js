@@ -1,6 +1,13 @@
 //hidden rec var determines if recs and labs are hidden
 let hideRec = false;
 
+//global storage for profName and profRating
+let globalProf = "";
+let globalRating = 0;
+
+//dictionary containing professors and their ratings
+var leadDictionary = {};
+
 //takes search grid element as input and returns the prof name
 function gridToProf(element){
 
@@ -19,11 +26,17 @@ function gridToProf(element){
     //remove any non alphanumerical chars
     profName = profElement.textContent.replace(/[^a-z0-9\s]/gi, '');
     
+    //profName saved in global version of itself
+    globalProf = profName;
+
     return profName;
 }
 
 //takes search grid element, rating, and legacyid as input
 function changeProfName(element,rating,id){
+
+    //rating saved in global version of itself
+    globalRating = rating;
 
     //gets the element cotaining the prof element
     profElement = element.getElementsByClassName("MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-12").item(0);
@@ -210,7 +223,9 @@ const observer = new MutationObserver(function (mutations) {
 
         //sends revelant items to be edited
         editGridElement(elements.item(i));
-        
+
+        //adds professor and their respective rating to dictionary
+        leadDictionary[globalProf] = globalRating;
     }
 });
 

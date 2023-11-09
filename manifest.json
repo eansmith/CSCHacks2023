@@ -20,7 +20,7 @@
         "48": "images/lead_icon_48x48.png",
         "128": "images/lead_icon_128x128.png"
     },
-    "default_title": "View Leaderboard",
-    "default_popup": "html/leader_popup.html"
+    "default_title": "View Introduction",
+    "default_popup": "/html/leader_popup.html"
   }
 }
