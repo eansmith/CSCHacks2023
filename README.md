@@ -10,12 +10,12 @@ This Chrome extension implements multiple features while using the Pitt HighPoin
 - Clickable links for Rate My Professor Pages
 
 ## Installation 
-1. Download the latest version's [zip file](https://github.com/eansmith/CSCHacks2023/releases/)
-2. Extract the zip file
+1. Download the latest version's [zip file](https://github.com/eansmith/CSCHacks2023/releases/).
+2. Extract the zip file.
 3. Navigate to chrome://extensions/
 4. Enable developer mode (in the top right corner).
 5. Click load unpacked extension and select the extracted folder.
-6. Go to HighPoint course search and the extension will load automatically
+6. Go to HighPoint course search and the extension will load automatically.
 
 ## Team Members
 Ean Smith
