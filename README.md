@@ -8,3 +8,14 @@ This Chrome extension implements multiple features while using the Pitt HighPoin
 - Rate My Professor score visible during HighPoint class search
 - Toggle recitations and labs during HighPoint class search
 - Clickable links for Rate My Professor Pages
+
+## Installation 
+
+## Team Members
+Ean Smith
+- Pitt CS 2026
+- eas235@pitt.edu
+
+Evan Mowry
+- Pitt CS 2026
+- emm297@pitt.edu
