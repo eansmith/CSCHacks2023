@@ -16,20 +16,8 @@ body {
   <p>List of rated professors (highest rating to lowest)</p>
   <p>Professors will be added automatically upon searching. Click "Clear" to clear the list.</p>
 
-<div id="output"></div>
 <!--Access Dictionary in content.js-->
-<script type="text/javascript" src="/js/content.js">
-  //print the dictionary content to HTML
-  var outputDiv = document.getElementById('output');
-      
-  for (var key in leadDictionary) {
-      if (leadDictionary.hasOwnProperty(key)) {
-          var pElement = document.createElement('p');
-          pElement.textContent = key + ': ' + leadDictionary[key];
-          outputDiv.appendChild(pElement);
-      }
-  }
-</script>
+<script type="text/javascript" src="/js/content.js"></script>
 
 <input type="submit" value="Clear">
 
