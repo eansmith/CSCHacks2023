@@ -50,6 +50,7 @@ function changeProfName(element,rating,id){
     }
 }
 
+//runs when hide rec button is toggled
 function toggleHideRec(){
 
     //toggles value
@@ -141,26 +142,32 @@ function editGridElement(element){
 
 }
 
+//creates the hide rec button
 function createRecButton(){
+
+    //gets row where button resides
     div = document.getElementsByClassName("MuiGrid-root d-flex align-items-end pb-sm-2 h-100 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12")[0].childNodes[0];
     
+    //creates button element and css
     button = document.createElement("input");
     button.type = "checkbox";
     button.id = "hpExtRec";
-
     button.style.transform = "scale(1.5)"; 
     button.style.margin = "15px 15px 15px 15px";
+
+    //adds listen to run function when clicked
     button.addEventListener('click', function() {
         toggleHideRec();
     });
 
-
+    //creates label element and css
     label = document.createElement("label");
     label.for = "hpExtRec"
     label.innerHTML = "Hide Recitations and Labs";
     label.style.fontFamily = "IBM Plex Sans";
     label.style.fontSize = "15px";
 
+    //make both elements children of the row
     div.appendChild(button);
     div.appendChild(label);
 }
