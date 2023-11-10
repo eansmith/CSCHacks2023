@@ -8,24 +8,90 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   min-width:300px;
+  padding: 10px;
+  background-color: #222324;
+  color: white;
+}
+
+.button-61 {
+  align-items: center;
+  appearance: none;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Roboto,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: .0892857em;
+  line-height: normal;
+  min-width: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  will-change: transform,opacity;
+}
+
+.button-61:hover {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.button-61:disabled {
+  background-color: rgba(0, 0, 0, .12);
+  box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+  color: rgba(0, 0, 0, .37);
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-61:not(:disabled) {
+  background-color: #6200ee;
+}
+
+.button-61:focus {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.button-61:active {
+  box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+  background: #A46BF5;
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h3>Pitt Highpoint Rate My Professor Integration</h3>
-  <p>This Chrome extension implements multiple features while using the Pitt HighPoint class search. Rate My Professor scores are available on the search page and by clicking on the score, the user is redirected to the Rate My Professor page. This will save students time while searching for classes. This is especially important when the enrollment period begins and classes fill up quickly.</p>
-  <p>- Rate My Professor score is visible during each class search.</p>
-  <p>Recitation and lab visibility can be altered via the new 'Hide Recitations and Labs' button</p>
-  <p>Clicking on a professor's name will take you to their page on Rate My Professor</p>
-
+  <h3 style = "font-family: 'Inter', sans-serif; font-size: 20px;">Pitt Highpoint Rate My Professor Integration</h3>
+  
+  <p style = "font-family: 'Inter', sans-serif;">This Chrome extension implements multiple features while using the Pitt HighPoint class search. Rate My Professor scores are available on the search page and by clicking on the score, the user is redirected to the Rate My Professor page. This will save students time while searching for classes. This is especially important when the enrollment period begins and classes fill up quickly.</p>
+  <ul>
+  <li style = "font-family: 'Inter', sans-serif;">Rate My Professor score is visible during each class search.</li>
+  <li style = "font-family: 'Inter', sans-serif;">Recitation and lab visibility can be altered via the new 'Hide Recitations and Labs' button</li>
+  <li style = "font-family: 'Inter', sans-serif;">Clicking on a professor's name will take you to their page on Rate My Professor</li>
+  </ul>
 <!--Access Dictionary in content.js [Incomplete]-->
 <script type="text/javascript" src="/js/content.js">
 
 </script>
 
 <!--Does nothing for now-->
-<input type="submit" value="Clear">
+<input class="button-61" type="submit" value="Clear">
 
 </body>
 </html>
